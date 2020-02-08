@@ -120,6 +120,10 @@ func (caller *Point2D) IsValid() bool {
 	return caller.X >= XMin && caller.X <= XMax && caller.Y >= YMin && caller.Y <= YMax
 }
 
+/*
+NOTE: the methods below are intended to be called on valid points
+*/
+
 //HasRight returns if there is a Point2D to the right of the caller within bounds in the x direction
 //right is defined as increasing x values
 //this method does not check calling point's validity
