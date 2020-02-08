@@ -64,20 +64,10 @@ func (caller *Point2D) IsOrigin() bool {
 func (caller *Point2D) MidpointApprox(other *Point2D) (midpoint Point2D) {
 	x, y := caller.MidpointValues(other) //get floating point values first
 
-	//adjust for rounding
-	if x < 0 {
-		x += -.5 //add down for negative
-	} else {
-		x += .5 //add up for positive or 0
-	}
-	//do the same for y
-	if y < 0 {
-		y += -.5
-	} else {
-		y += .5
-	}
+	//round before casting to ints
+	x, y = math.Round(x), math.Round(y)
 
-	//round x and y to the nearest integer and return the approximate midpoint
+	//cast x and y as integers and put them into the midpoint
 	midpoint.X = (int)(x)
 	midpoint.Y = (int)(y)
 	return midpoint
