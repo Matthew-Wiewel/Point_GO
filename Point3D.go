@@ -68,7 +68,7 @@ func SetDimensions3D(xmin, xmax, ymin, ymax, zmin, zmax int) {
 
 //IsValid returns whether the Point3D is within the dimension bounds
 func (caller *Point3D) IsValid() bool {
-	return caller.Point2D.isValid() && caller.Z >= ZMin && caller.Z <= ZMax
+	return caller.Point2D.IsValid() && caller.Z >= ZMin && caller.Z <= ZMax
 }
 
 //HasIn return whether or not a Point3D has a Point3D in from it in the z direction
