@@ -920,3 +920,91 @@ func TestHasDown_2(t *testing.T) { //test where a down is had
 		p.ToString(), result, expected, YMin, YMax)
 	}
 }
+
+func TestRightPoint2D_1(t *testing.T) {
+	p := Point2D{2,5}
+	expected := Point2D{3,5}
+	result := p.Right()
+
+	if result != expected {
+		t.Errorf("Point %s, return %s for right, not %s", 
+		p.ToString(), result.ToString(), expected.ToString())
+	}
+}
+
+func TestRightPoint2D_2(t *testing.T) {
+	p := Point2D{-2,5}
+	expected := Point2D{-1,5}
+	result := p.Right()
+
+	if result != expected {
+		t.Errorf("Point %s, return %s for right, not %s", 
+		p.ToString(), result.ToString(), expected.ToString())
+	}
+}
+
+func TestLeftPoint2D_1(t *testing.T) {
+	p := Point2D{2,5}
+	expected := Point2D{1,5}
+	result := p.Left()
+
+	if result != expected {
+		t.Errorf("Point %s, return %s for left, not %s", 
+		p.ToString(), result.ToString(), expected.ToString())
+	}
+}
+
+func TestLeftPoint2D_2(t *testing.T) {
+	p := Point2D{-2,5}
+	expected := Point2D{-3,5}
+	result := p.Left()
+
+	if result != expected {
+		t.Errorf("Point %s, return %s for left, not %s", 
+		p.ToString(), result.ToString(), expected.ToString())
+	}
+}
+
+func TestUpPoint2D_1(t *testing.T) {
+	p := Point2D{3,0}
+	expected := Point2D{3,-1}
+	result := p.Up()
+
+	if result != expected {
+		t.Errorf("Point %s return %s for up, not %s",
+		p.ToString(), result.ToString(), expected.ToString())
+	}
+}
+
+func TestUpPoint2D_2(t *testing.T) {
+	p := Point2D{3,2}
+	expected := Point2D{3,1}
+	result := p.Up()
+
+	if result != expected {
+		t.Errorf("Point %s return %s for up, not %s",
+		p.ToString(), result.ToString(), expected.ToString())
+	}
+}
+
+func TestDownPoint2D_1(t *testing.T) {
+	p := Point2D{3,0}
+	expected := Point2D{3,1}
+	result := p.Down()
+
+	if result != expected {
+		t.Errorf("Point %s return %s for up, not %s",
+		p.ToString(), result.ToString(), expected.ToString())
+	}
+}
+
+func TestDownPoint2D_2(t *testing.T) {
+	p := Point2D{3,4}
+	expected := Point2D{3,5}
+	result := p.Down()
+
+	if result != expected {
+		t.Errorf("Point %s return %s for up, not %s",
+		p.ToString(), result.ToString(), expected.ToString())
+	}
+}
