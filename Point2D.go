@@ -122,24 +122,28 @@ func (caller *Point2D) IsValid() bool {
 
 //HasRight returns if there is a Point2D to the right of the caller within bounds in the x direction
 //right is defined as increasing x values
+//this method does not check calling point's validity
 func (caller *Point2D) HasRight() bool {
 	return caller.X < XMax
 }
 
 //HasLeft returns if there a Point2D to the left of the caller within bounds in the x direction
 //left is defined as decreasing x values
+//this method does not check calling point's validity
 func (caller *Point2D) HasLeft() bool {
 	return caller.X > XMin
 }
 
 //HasUp returns if there is a Point2D above the caller within bounds in the y direction
 //up is defined as decreasing y values
+//this method does not check calling point's validity
 func (caller *Point2D) HasUp() bool {
 	return caller.Y > YMin
 }
 
 //HasDown returns if there is a Point2D below the caller within bounds in the y direction
 //down is defined as increasing y values
+//this method does not check calling point's validity
 func (caller *Point2D) HasDown() bool {
 	return caller.Y < YMax
 }
