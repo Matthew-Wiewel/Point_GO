@@ -21,12 +21,12 @@ type Point2D struct {
 
 //DistanceFrom is a method to get the absolute distance between two points
 func (caller *Point2D) DistanceFrom(other *Point2D) float64 {
-	return math.Sqrt((float64)((caller.X-other.X)*(caller.X-other.X) + (caller.Y-other.Y)*(caller.Y-other.Y)))
+	return math.Sqrt(float64((caller.X-other.X)*(caller.X-other.X) + (caller.Y-other.Y)*(caller.Y-other.Y)))
 }
 
 //DistanceFromOrigin is a specialized version of DistanceFrom to avoid needing an origin Point2D
 func (caller *Point2D) DistanceFromOrigin() float64 {
-	return math.Sqrt((float64)(caller.X*caller.X + caller.Y*caller.Y))
+	return math.Sqrt(float64(caller.X*caller.X + caller.Y*caller.Y))
 }
 
 //GetQuadrant returns which quadrant on the x/y plane a point lies in
@@ -68,15 +68,15 @@ func (caller *Point2D) MidpointApprox(other *Point2D) (midpoint Point2D) {
 	x, y = math.Round(x), math.Round(y)
 
 	//cast x and y as integers and put them into the midpoint
-	midpoint.X = (int)(x)
-	midpoint.Y = (int)(y)
+	midpoint.X = int(x)
+	midpoint.Y = int(y)
 	return midpoint
 }
 
 //MidpointValues returns the x and y float64 values of the midpoint between two points
 func (caller *Point2D) MidpointValues(other *Point2D) (x, y float64) {
-	x = (float64)(caller.X+other.X) / 2.
-	y = (float64)(caller.Y+other.Y) / 2.
+	x = float64(caller.X+other.X) / 2.
+	y = float64(caller.Y+other.Y) / 2.
 	return x, y
 }
 
