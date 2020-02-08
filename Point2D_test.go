@@ -27,7 +27,7 @@ func TestConstructorPoint2D(t *testing.T) {
 	}
 }
 
-func TestEqualityPoint2D(t *testing.T) {
+func TestEqualityPoint2D(t *testing.T) { //a test of my own to get a better idea of Go's comparison of structs
 	p1 := Point2D{5, 7}
 	p2 := Point2D{5, 7}
 	if (p1 == p2) != true {
@@ -63,7 +63,7 @@ func TestToStringPoint2D(t *testing.T) {
 	}
 }
 
-func TestDistanceFromPoint2D_1(t *testing.T) {
+func TestDistanceFromPoint2D_1(t *testing.T) { //test when result is a whole number
 	p1 := Point2D{1, 1}
 	p2 := Point2D{4, 5}
 	expected := 5.
@@ -77,7 +77,7 @@ func TestDistanceFromPoint2D_1(t *testing.T) {
 	}
 }
 
-func TestDistanceFromPoint2D_2(t *testing.T) {
+func TestDistanceFromPoint2D_2(t *testing.T) { //test when one value is negative and the other positive
 	p1 := Point2D{-7, -4}
 	p2 := Point2D{17, 7}
 	expected := 26.400758
@@ -91,7 +91,7 @@ func TestDistanceFromPoint2D_2(t *testing.T) {
 	}
 }
 
-func TestDistanceFromPoint2D_3(t *testing.T) {
+func TestDistanceFromPoint2D_3(t *testing.T) { //test when both values are negative
 	p1 := Point2D{-5, -10}
 	p2 := Point2D{-3, -4}
 	expected := 6.324555
@@ -105,7 +105,7 @@ func TestDistanceFromPoint2D_3(t *testing.T) {
 	}
 }
 
-func TestDistanceFromPoint2D_4(t *testing.T) {
+func TestDistanceFromPoint2D_4(t *testing.T) { //test when distance is 0
 	p1 := Point2D{3, -8}
 	p2 := Point2D{3, -8}
 	expected := 0.
@@ -119,7 +119,7 @@ func TestDistanceFromPoint2D_4(t *testing.T) {
 	}
 }
 
-func TestDistanceFromOriginPoint2D_1(t *testing.T) {
+func TestDistanceFromOriginPoint2D_1(t *testing.T) { //test when is origin
 	p := Point2D{0, 0}
 	expected := 0.
 	result := p.DistanceFromOrigin()
@@ -129,7 +129,7 @@ func TestDistanceFromOriginPoint2D_1(t *testing.T) {
 	}
 }
 
-func TestDistanceFromOriginPoint2D_2(t *testing.T) {
+func TestDistanceFromOriginPoint2D_2(t *testing.T) { //test when both x and y are positive
 	p := Point2D{3, 4}
 	expected := 5.
 	result := p.DistanceFromOrigin()
@@ -139,7 +139,7 @@ func TestDistanceFromOriginPoint2D_2(t *testing.T) {
 	}
 }
 
-func TestDistanceFromOriginPoint2D_3(t *testing.T) {
+func TestDistanceFromOriginPoint2D_3(t *testing.T) { //test when there is a mix of positive and negative
 	p := Point2D{3, -9}
 	expected := 9.486833
 	result := p.DistanceFromOrigin()
@@ -149,7 +149,7 @@ func TestDistanceFromOriginPoint2D_3(t *testing.T) {
 	}
 }
 
-func TestGetQuadrantPoint2D_1(t *testing.T) {
+func TestGetQuadrantPoint2D_1(t *testing.T) { //test 1st quadrant
 	p := Point2D{1,3}
 	expected := 1
 	result := p.GetQuadrant()
@@ -158,7 +158,7 @@ func TestGetQuadrantPoint2D_1(t *testing.T) {
 	}
 }
 
-func TestGetQuadrantPoint2D_2(t *testing.T) {
+func TestGetQuadrantPoint2D_2(t *testing.T) { //test 2nd quadrant
 	p := Point2D{-1,3}
 	expected := 2
 	result := p.GetQuadrant()
@@ -167,7 +167,7 @@ func TestGetQuadrantPoint2D_2(t *testing.T) {
 	}
 }
 
-func TestGetQuadrantPoint2D_3(t *testing.T) {
+func TestGetQuadrantPoint2D_3(t *testing.T) { //test 3rd quadrant
 	p := Point2D{-1,-3}
 	expected := 3
 	result := p.GetQuadrant()
@@ -176,7 +176,7 @@ func TestGetQuadrantPoint2D_3(t *testing.T) {
 	}
 }
 
-func TestGetQuadrantPoint2D_4(t *testing.T) {
+func TestGetQuadrantPoint2D_4(t *testing.T) { //test 4th quadrant
 	p := Point2D{1,-3}
 	expected := 4
 	result := p.GetQuadrant()
@@ -185,7 +185,7 @@ func TestGetQuadrantPoint2D_4(t *testing.T) {
 	}
 }
 
-func TestGetQuadrantPoint2D_5(t *testing.T) {
+func TestGetQuadrantPoint2D_5(t *testing.T) { //test when on x axis
 	p := Point2D{0,3}
 	expected := -1
 	result := p.GetQuadrant()
@@ -194,7 +194,7 @@ func TestGetQuadrantPoint2D_5(t *testing.T) {
 	}
 }
 
-func TestGetQuadrantPoint2D_6(t *testing.T) {
+func TestGetQuadrantPoint2D_6(t *testing.T) { //test when on y axis
 	p := Point2D{1,0}
 	expected := -1
 	result := p.GetQuadrant()
@@ -203,12 +203,183 @@ func TestGetQuadrantPoint2D_6(t *testing.T) {
 	}
 }
 
-func TestGetQuadrantPoint2D_7(t *testing.T) {
+func TestGetQuadrantPoint2D_7(t *testing.T) { //test when origin
 	p := Point2D{0,0}
 	expected := -1
 	result := p.GetQuadrant()
 	if result != expected {
 		t.Errorf("%s is in %d, not %d", p.ToString(), result, expected)
+	}
+}
+
+func TestIsOnXaxis_1(t *testing.T) { //test when x is nonzero and y is 0
+	p := Point2D{1,0}
+	expected := false
+	result := p.IsOnXaxis()
+	if result != expected {
+		t.Errorf("%s returns %t, not %t", p.ToString(), result, expected)
+	}
+}
+
+func TestIsOnXaxis_2(t *testing.T) { //test when x and y are both nonzero
+	p := Point2D{1,1}
+	expected := false
+	result := p.IsOnXaxis()
+	if result != expected {
+		t.Errorf("%s returns %t, not %t", p.ToString(), result, expected)
+	}
+}
+
+func TestIsOnXaxis_3(t *testing.T) { //test when both x and y are 0
+	p := Point2D{0,0}
+	expected := true
+	result := p.IsOnXaxis()
+	if result != expected {
+		t.Errorf("%s returns %t, not %t", p.ToString(), result, expected)
+	}
+}
+
+func TestIsOnXaxis_4(t *testing.T) { //test when x is 0 and y is nonzero
+	p := Point2D{0,5}
+	expected := true
+	result := p.IsOnXaxis()
+	if result != expected {
+		t.Errorf("%s returns %t, not %t", p.ToString(), result, expected)
+	}
+}
+
+func TestIsOnXaxis_5(t *testing.T) { //test when x is less than 0
+	p := Point2D{-1,0}
+	expected := false
+	result := p.IsOnXaxis()
+	if result != expected {
+		t.Errorf("%s returns %t, not %t", p.ToString(), result, expected)
+	}
+}
+
+func TestIsOnXaxis_6(t *testing.T) { //test when both x and y are less than 0
+	p := Point2D{-1,-1}
+	expected := false
+	result := p.IsOnXaxis()
+	if result != expected {
+		t.Errorf("%s returns %t, not %t", p.ToString(), result, expected)
+	}
+}
+
+func TestIsOnYaxis_1(t *testing.T) { //test when x is 0 and y is greater than 0
+	p := Point2D{0,1}
+	expected := false
+	result := p.IsOnYaxis()
+	if result != expected {
+		t.Errorf("%s return %t, not %t", p.ToString(), result, expected)
+	}
+}
+
+func TestIsOnYaxis_2(t *testing.T) { //test when x is 0 ad y is less than 0
+	p := Point2D{0,-1}
+	expected := false
+	result := p.IsOnYaxis()
+	if result != expected {
+		t.Errorf("%s return %t, not %t", p.ToString(), result, expected)
+	}
+}
+
+func TestIsOnYaxis_3(t *testing.T) { //test when x is nonzero and y is 0
+	p := Point2D{1,0}
+	expected := true
+	result := p.IsOnYaxis()
+	if result != expected {
+		t.Errorf("%s return %t, not %t", p.ToString(), result, expected)
+	}
+}
+
+func TestIsOnYaxis_4(t *testing.T) { //test when origin
+	p := Point2D{0,0}
+	expected := false
+	result := p.IsOnYaxis()
+	if result != expected {
+		t.Errorf("%s return %t, not %t", p.ToString(), result, expected)
+	}
+}
+
+func TestIsOnYaxis_5(t *testing.T) { //test when x and y are nonzero and positive
+	p := Point2D{1,1}
+	expected := false
+	result := p.IsOnYaxis()
+	if result != expected {
+		t.Errorf("%s return %t, not %t", p.ToString(), result, expected)
+	}
+}
+
+func TestIsOnYaxis_6(t *testing.T) { //test when x and y are nonzero and negative
+	p := Point2D{-1,-1}
+	expected := false
+	result := p.IsOnYaxis()
+	if result != expected {
+		t.Errorf("%s return %t, not %t", p.ToString(), result, expected)
+	}
+}
+
+func TestIsOriginPoint2D_1(t *testing.T) { //test when in 1st quadrant
+	p := Point2D{1,1}
+	expected := false
+	result := p.IsOrigin()
+	if result != expected {
+		t.Errorf("%s returns %t to IsOrigin, not %t",p.ToString(), result, expected)
+	}
+}
+
+func TestIsOriginPoint2D_2(t *testing.T) { //test when in 2nd quadrant
+	p := Point2D{-1,1}
+	expected := false
+	result := p.IsOrigin()
+	if result != expected {
+		t.Errorf("%s returns %t to IsOrigin, not %t",p.ToString(), result, expected)
+	}
+}
+
+func TestIsOriginPoint2D_3(t *testing.T) { //test when in 3rd quadrant
+	p := Point2D{-1,-1}
+	expected := false
+	result := p.IsOrigin()
+	if result != expected {
+		t.Errorf("%s returns %t to IsOrigin, not %t",p.ToString(), result, expected)
+	}
+}
+
+func TestIsOriginPoint2D_4(t *testing.T) { //test when in 4th quadrant
+	p := Point2D{1,-1}
+	expected := false
+	result := p.IsOrigin()
+	if result != expected {
+		t.Errorf("%s returns %t to IsOrigin, not %t",p.ToString(), result, expected)
+	}
+}
+
+func TestIsOriginPoint2D_5(t *testing.T) { //test when on x axis only
+	p := Point2D{0,1}
+	expected := false
+	result := p.IsOrigin()
+	if result != expected {
+		t.Errorf("%s returns %t to IsOrigin, not %t",p.ToString(), result, expected)
+	}
+}
+
+func TestIsOriginPoint2D_6(t *testing.T) { //test when on y axis only
+	p := Point2D{1,0}
+	expected := false
+	result := p.IsOrigin()
+	if result != expected {
+		t.Errorf("%s returns %t to IsOrigin, not %t",p.ToString(), result, expected)
+	}
+}
+
+func TestIsOriginPoint2D_7(t *testing.T) { //test when is origin
+	p := Point2D{0,0}
+	expected := false
+	result := p.IsOrigin()
+	if result != expected {
+		t.Errorf("%s returns %t to IsOrigin, not %t",p.ToString(), result, expected)
 	}
 }
 
