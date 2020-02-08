@@ -1,8 +1,9 @@
 package point
 
-import "fmt"
-import "math"
-
+import (
+	"fmt"
+	"math"
+)
 
 //Point2D is a structure for 2D points
 type Point2D struct {
@@ -80,7 +81,7 @@ func (caller *Point2D) Slope(other *Point2D) float64 {
 	//get the change in x. If it is 0, return infinity
 	deltaX := caller.X - other.X
 	if deltaX == 0 {
-		return math.Inf(deltaX) 
+		return math.Inf(0)
 	}
 
 	//deltaX is non-zero, calculate delta y
@@ -99,10 +100,13 @@ XMin, XMax, YMin, and YMax should be set prior to calling these methods
 
 //XMin is the minimum x value allowed, inclusive
 var XMin int
+
 //XMax is the maximum x value allowed, inclusive
 var XMax int
+
 //YMin is the minimum y value allowed, inclusive
 var YMin int
+
 //YMax is the maximum y value allowed, inclusive
 var YMax int
 
