@@ -116,7 +116,7 @@ func SetDimensions2D(xmin, xmax, ymin, ymax int) {
 }
 
 //IsValid returns whether or not the calling Point2D is within the bounds of the grid
-func (caller *Point2D) isValid() bool {
+func (caller *Point2D) IsValid() bool {
 	return caller.X >= XMin && caller.X <= XMax && caller.Y >= YMin && caller.Y <= YMax
 }
 
