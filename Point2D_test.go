@@ -295,7 +295,7 @@ func TestIsOnYaxis_3(t *testing.T) { //test when x is nonzero and y is 0
 
 func TestIsOnYaxis_4(t *testing.T) { //test when origin
 	p := Point2D{0,0}
-	expected := false
+	expected := true
 	result := p.IsOnYaxis()
 	if result != expected {
 		t.Errorf("%s return %t, not %t", p.ToString(), result, expected)
@@ -376,10 +376,118 @@ func TestIsOriginPoint2D_6(t *testing.T) { //test when on y axis only
 
 func TestIsOriginPoint2D_7(t *testing.T) { //test when is origin
 	p := Point2D{0,0}
-	expected := false
+	expected := true
 	result := p.IsOrigin()
 	if result != expected {
 		t.Errorf("%s returns %t to IsOrigin, not %t",p.ToString(), result, expected)
+	}
+}
+
+func TestMidpointValuesPoint2D_1(t *testing.T) { //test when midpoint values are whole and positive
+	p1 := Point2D{3,4}
+	p2 := Point2D{7,2}
+	expectedX, expectedY := 5., 3.
+
+	resultX, resultY := p1.MidpointValues(&p2)
+
+	diffX := math.Abs(expectedX - resultX)
+	diffY := math.Abs(expectedY - resultY)
+
+	if diffX > epsilon {
+		t.Errorf("x value returned was %g, not %g", resultX, expectedX)
+	}
+	if diffY > epsilon {
+		t.Errorf("y value returned was %g, not %g", resultY, expectedY)
+	}
+}
+
+func TestMidpointValuesPoint2D_2(t *testing.T) { //test when midpoint is same point
+	p1 := Point2D{3,4}
+	p2 := Point2D{3,4}
+	expectedX, expectedY := 3., 4.
+
+	resultX, resultY := p1.MidpointValues(&p2)
+
+	diffX := math.Abs(expectedX - resultX)
+	diffY := math.Abs(expectedY - resultY)
+
+	if diffX > epsilon {
+		t.Errorf("x value returned was %g, not %g", resultX, expectedX)
+	}
+	if diffY > epsilon {
+		t.Errorf("y value returned was %g, not %g", resultY, expectedY)
+	}
+}
+
+func TestMidpointValuesPoint2D_3(t *testing.T) { //test when doing midpoints where 1 value is negative and the other is positive
+	p1 := Point2D{-4,4}
+	p2 := Point2D{7,-1}
+	expectedX, expectedY := 1.5, 1.5
+
+	resultX, resultY := p1.MidpointValues(&p2)
+
+	diffX := math.Abs(expectedX - resultX)
+	diffY := math.Abs(expectedY - resultY)
+
+	if diffX > epsilon {
+		t.Errorf("x value returned was %g, not %g", resultX, expectedX)
+	}
+	if diffY > epsilon {
+		t.Errorf("y value returned was %g, not %g", resultY, expectedY)
+	}
+}
+
+func TestMidpointValuesPoint2D_4(t *testing.T) { //test when midpoint values are whole and negative
+	p1 := Point2D{-3,-4}
+	p2 := Point2D{-7,-2}
+	expectedX, expectedY := -5., -3.
+
+	resultX, resultY := p1.MidpointValues(&p2)
+
+	diffX := math.Abs(expectedX - resultX)
+	diffY := math.Abs(expectedY - resultY)
+
+	if diffX > epsilon {
+		t.Errorf("x value returned was %g, not %g", resultX, expectedX)
+	}
+	if diffY > epsilon {
+		t.Errorf("y value returned was %g, not %g", resultY, expectedY)
+	}
+}
+
+func TestMidpointValuesPoint2D_5(t *testing.T) { //test midpoint values negative and a mix of whole and floating point
+	p1 := Point2D{-1,-4}
+	p2 := Point2D{-6,-2}
+	expectedX, expectedY := -3.5, -3.
+
+	resultX, resultY := p1.MidpointValues(&p2)
+
+	diffX := math.Abs(expectedX - resultX)
+	diffY := math.Abs(expectedY - resultY)
+
+	if diffX > epsilon {
+		t.Errorf("x value returned was %g, not %g", resultX, expectedX)
+	}
+	if diffY > epsilon {
+		t.Errorf("y value returned was %g, not %g", resultY, expectedY)
+	}
+}
+
+func TestMidpointValuesPoint2D_6(t *testing.T) { //test when a midpoint value is 0
+	p1 := Point2D{-3,-4}
+	p2 := Point2D{3,4}
+	expectedX, expectedY := 0., 0.
+
+	resultX, resultY := p1.MidpointValues(&p2)
+
+	diffX := math.Abs(expectedX - resultX)
+	diffY := math.Abs(expectedY - resultY)
+
+	if diffX > epsilon {
+		t.Errorf("x value returned was %g, not %g", resultX, expectedX)
+	}
+	if diffY > epsilon {
+		t.Errorf("y value returned was %g, not %g", resultY, expectedY)
 	}
 }
 
