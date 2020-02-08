@@ -666,3 +666,161 @@ func TestSetDimensions2D(t *testing.T) {
 		t.Errorf("YMax = %d, not 4", YMax)
 	}
 }
+
+//note: for all tests below, XMin, XMax, YMin, YMax = -5, 10, -4, 8
+
+func TestIsValidPoint2D_1(t *testing.T) { //test both points below minimum
+	SetDimensions2D(-5, 10, -4, 8)
+	p := Point2D{ -6,-5}
+	expected := false
+	result := p.IsValid()
+
+	if result != expected {
+		t.Errorf("Validity of %s returned %t, not %t with bounds of XMin,XMax,Ymin,YMax = %d,%d,%d,%d",
+		p.ToString(), result, expected, XMin, XMax, YMin, YMax)
+	}
+}
+
+func TestIsValidPoint2D_2(t *testing.T) { //test x point below minimum
+	SetDimensions2D(-5, 10, -4, 8)
+	p := Point2D{ -6,-4}
+	expected := false
+	result := p.IsValid()
+
+	if result != expected {
+		t.Errorf("Validity of %s returned %t, not %t with bounds of XMin,XMax,Ymin,YMax = %d,%d,%d,%d",
+		p.ToString(), result, expected, XMin, XMax, YMin, YMax)
+	}
+}
+
+func TestIsValidPoint2D_3(t *testing.T) { //test y point below minimum
+	SetDimensions2D(-5, 10, -4, 8)
+	p := Point2D{ -5, -5}
+	expected := false
+	result := p.IsValid()
+
+	if result != expected {
+		t.Errorf("Validity of %s returned %t, not %t with bounds of XMin,XMax,Ymin,YMax = %d,%d,%d,%d",
+		p.ToString(), result, expected, XMin, XMax, YMin, YMax)
+	}
+}
+
+func TestIsValidPoint2D_4(t *testing.T) { //test both points above maximum
+	SetDimensions2D(-5, 10, -4, 8)
+	p := Point2D{ 11,9}
+	expected := false
+	result := p.IsValid()
+
+	if result != expected {
+		t.Errorf("Validity of %s returned %t, not %t with bounds of XMin,XMax,Ymin,YMax = %d,%d,%d,%d",
+		p.ToString(), result, expected, XMin, XMax, YMin, YMax)
+	}
+}
+
+func TestIsValidPoint2D_5(t *testing.T) { //test x point above maximum
+	SetDimensions2D(-5, 10, -4, 8)
+	p := Point2D{ 11, 8}
+	expected := false
+	result := p.IsValid()
+
+	if result != expected {
+		t.Errorf("Validity of %s returned %t, not %t with bounds of XMin,XMax,Ymin,YMax = %d,%d,%d,%d",
+		p.ToString(), result, expected, XMin, XMax, YMin, YMax)
+	}
+}
+
+func TestIsValidPoint2D_6(t *testing.T) { //test y point above maximum
+	SetDimensions2D(-5, 10, -4, 8)
+	p := Point2D{ 10,9}
+	expected := false
+	result := p.IsValid()
+
+	if result != expected {
+		t.Errorf("Validity of %s returned %t, not %t with bounds of XMin,XMax,Ymin,YMax = %d,%d,%d,%d",
+		p.ToString(), result, expected, XMin, XMax, YMin, YMax)
+	}
+}
+
+func TestIsValidPoint2D_7(t *testing.T) { //test x below and y above
+	SetDimensions2D(-5, 10, -4, 8)
+	p := Point2D{ -6,9}
+	expected := false
+	result := p.IsValid()
+
+	if result != expected {
+		t.Errorf("Validity of %s returned %t, not %t with bounds of XMin,XMax,Ymin,YMax = %d,%d,%d,%d",
+		p.ToString(), result, expected, XMin, XMax, YMin, YMax)
+	}
+}
+
+func TestIsValidPoint2D_8(t *testing.T) { //test x above and y below
+	SetDimensions2D(-5, 10, -4, 8)
+	p := Point2D{ 11,-5}
+	expected := false
+	result := p.IsValid()
+
+	if result != expected {
+		t.Errorf("Validity of %s returned %t, not %t with bounds of XMin,XMax,Ymin,YMax = %d,%d,%d,%d",
+		p.ToString(), result, expected, XMin, XMax, YMin, YMax)
+	}
+}
+
+func TestIsValidPoint2D_9(t *testing.T) { //test x is min and y is max
+	SetDimensions2D(-5, 10, -4, 8)
+	p := Point2D{ -5,8}
+	expected := true
+	result := p.IsValid()
+
+	if result != expected {
+		t.Errorf("Validity of %s returned %t, not %t with bounds of XMin,XMax,Ymin,YMax = %d,%d,%d,%d",
+		p.ToString(), result, expected, XMin, XMax, YMin, YMax)
+	}
+}
+
+func TestIsValidPoint2D_10(t *testing.T) { //test x is max and y is min
+	SetDimensions2D(-5, 10, -4, 8)
+	p := Point2D{ 10,-4}
+	expected := true
+	result := p.IsValid()
+
+	if result != expected {
+		t.Errorf("Validity of %s returned %t, not %t with bounds of XMin,XMax,Ymin,YMax = %d,%d,%d,%d",
+		p.ToString(), result, expected, XMin, XMax, YMin, YMax)
+	}
+}
+
+func TestIsValidPoint2D_11(t *testing.T) { //test both are at min
+	SetDimensions2D(-5, 10, -4, 8)
+	p := Point2D{ -5,-4}
+	expected := true
+	result := p.IsValid()
+
+	if result != expected {
+		t.Errorf("Validity of %s returned %t, not %t with bounds of XMin,XMax,Ymin,YMax = %d,%d,%d,%d",
+		p.ToString(), result, expected, XMin, XMax, YMin, YMax)
+	}
+}
+
+func TestIsValidPoint2D_12(t *testing.T) { //test both are at max
+	SetDimensions2D(-5, 10, -4, 8)
+	p := Point2D{ 10,8}
+	expected := true
+	result := p.IsValid()
+
+	if result != expected {
+		t.Errorf("Validity of %s returned %t, not %t with bounds of XMin,XMax,Ymin,YMax = %d,%d,%d,%d",
+		p.ToString(), result, expected, XMin, XMax, YMin, YMax)
+	}
+}
+
+func TestIsValidPoint2D_13(t *testing.T) { //test both in middle of range
+	SetDimensions2D(-5, 10, -4, 8)
+	p := Point2D{ -3,4}
+	expected := true
+	result := p.IsValid()
+
+	if result != expected {
+		t.Errorf("Validity of %s returned %t, not %t with bounds of XMin,XMax,Ymin,YMax = %d,%d,%d,%d",
+		p.ToString(), result, expected, XMin, XMax, YMin, YMax)
+	}
+}
