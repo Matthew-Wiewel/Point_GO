@@ -10,7 +10,7 @@ type Point2D struct {
 	X, Y int
 }
 
-//ToString shows how a Point2D should be printed
+//ToString shows how a Point2D should be printed, returns string in (x,y) format
 func (caller *Point2D) ToString() string {
 	return fmt.Sprintf("(%d,%d)", caller.X, caller.Y)
 }

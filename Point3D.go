@@ -9,7 +9,7 @@ type Point3D struct {
 	Z int
 }
 
-//ToString shows how a Point3D shold be printed
+//ToString shows how a Point3D shold be printed, returns string in (x,y,z) format
 func (caller *Point3D) ToString() string {
 	return fmt.Sprintf("(%d,%d,%d)", caller.X, caller.Y, caller.Z)
 }
