@@ -824,3 +824,99 @@ func TestIsValidPoint2D_13(t *testing.T) { //test both in middle of range
 		p.ToString(), result, expected, XMin, XMax, YMin, YMax)
 	}
 }
+
+func TestHasRight_1(t *testing.T) { //test already at edge of range
+	SetDimensions2D(-5, 10, -4, 8)
+	p := Point2D{10, 8}
+	expected := false
+	result := p.HasRight()
+
+	if result != expected {
+		t.Errorf("Point %s returned %t for HasRight, not %t with XMin,Xmax = %d,%d",
+		p.ToString(), result, expected, XMin, XMax)
+	}
+}
+
+func TestHasRight_2(t *testing.T) { //test where a right is had
+	SetDimensions2D(-5, 10, -4, 8)
+	p := Point2D{9, 8}
+	expected := true
+	result := p.HasRight()
+
+	if result != expected {
+		t.Errorf("Point %s returned %t for HasRight, not %t with XMin,Xmax = %d,%d",
+		p.ToString(), result, expected, XMin, XMax)
+	}
+}
+
+func TestHasLeft_1(t *testing.T) { //test already at edge of range
+	SetDimensions2D(-5, 10, -4, 8)
+	p := Point2D{-5, 8}
+	expected := false
+	result := p.HasLeft()
+
+	if result != expected {
+		t.Errorf("Point %s returned %t for HasLeft, not %t with XMin,Xmax = %d,%d",
+		p.ToString(), result, expected, XMin, XMax)
+	}
+}
+
+func TestHasLeft_2(t *testing.T) { //test where a left is had
+	SetDimensions2D(-5, 10, -4, 8)
+	p := Point2D{-4, 8}
+	expected := true
+	result := p.HasLeft()
+
+	if result != expected {
+		t.Errorf("Point %s returned %t for HasLeft, not %t with XMin,Xmax = %d,%d",
+		p.ToString(), result, expected, XMin, XMax)
+	}
+}
+
+func TestHasUp_1(t *testing.T) { //test already at edge of range
+	SetDimensions2D(-5, 10, -4, 8)
+	p := Point2D{-5, -4}
+	expected := false
+	result := p.HasUp()
+
+	if result != expected {
+		t.Errorf("Point %s returned %t for HasUp, not %t with YMin,Ymax = %d,%d",
+		p.ToString(), result, expected, YMin, YMax)
+	}
+}
+
+func TestHasUp_2(t *testing.T) { //test where an up is had
+	SetDimensions2D(-5, 10, -4, 8)
+	p := Point2D{-4, -3}
+	expected := true
+	result := p.HasUp()
+
+	if result != expected {
+		t.Errorf("Point %s returned %t for HasUp, not %t with YMin,Ymax = %d,%d",
+		p.ToString(), result, expected, YMin, YMax)
+	}
+}
+
+func TestHasDown_1(t *testing.T) { //test already at edge of range
+	SetDimensions2D(-5, 10, -4, 8)
+	p := Point2D{-5, 8}
+	expected := false
+	result := p.HasDown()
+
+	if result != expected {
+		t.Errorf("Point %s returned %t for HasDown, not %t with YMin,Ymax = %d,%d",
+		p.ToString(), result, expected, YMin, YMax)
+	}
+}
+
+func TestHasDown_2(t *testing.T) { //test where a down is had
+	SetDimensions2D(-5, 10, -4, 8)
+	p := Point2D{-4, 7}
+	expected := true
+	result := p.HasDown()
+
+	if result != expected {
+		t.Errorf("Point %s returned %t for HasDown, not %t with YMin,Ymax = %d,%d",
+		p.ToString(), result, expected, YMin, YMax)
+	}
+}
