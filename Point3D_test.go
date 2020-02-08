@@ -2,6 +2,9 @@ package point
 
 import "testing"
 
+func TestToStringPoint3D(t *testing.T) {
+
+}
 func TestSetDimensions3D(t *testing.T) {
     SetDimensions3D(1,2,3,4,5,6)
     if XMin != 1 {
