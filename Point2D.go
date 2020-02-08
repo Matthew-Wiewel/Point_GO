@@ -90,8 +90,8 @@ func (caller *Point2D) MidpointValues(other *Point2D) (x, y float64) {
 	return x, y
 }
 
-//SetDimensions is a method used to set the minimum and maximum dimesnions along the X/Y plane for Point2D
-func SetDimensions(xmin, xmax, ymin, ymax int) {
+//SetDimensions2D is a method used to set the minimum and maximum dimesnions along the X/Y plane for Point2D
+func SetDimensions2D(xmin, xmax, ymin, ymax int) {
 	XMin, XMax, YMin, YMax = xmin, xmax, ymin, ymax
 }
 
