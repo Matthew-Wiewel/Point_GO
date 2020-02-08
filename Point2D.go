@@ -75,16 +75,13 @@ increasing y values being down and decreasing y values being up
 XMin, XMax, YMin, and YMax should be set prior to calling these methods
 */
 
-//XMin and the rest of these variables are intended for use when using Point2D to
-//track locations in a 2D-grid. These values are inclusive
-var XMin int //XMin
-//XMax lint-satisfy
+//XMin is the minimum x value allowed, inclusive
+var XMin int
+//XMax is the maximum x value allowed, inclusive
 var XMax int
-
-//YMin lint-satisfy
+//YMin is the minimum y value allowed, inclusive
 var YMin int
-
-//YMax lint-satisfy
+//YMax is the maximum y value allowed, inclusive
 var YMax int
 
 //SetDimensions2D is a method used to set the minimum and maximum dimesnions along the X/Y plane for Point2D
