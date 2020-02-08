@@ -573,6 +573,84 @@ func TestMidpointValuesPoint2D_6(t *testing.T) { //test when a midpoint value is
 	}
 }
 
+func TestSlopePoint2DEquality(t *testing.T) {
+	p1 := Point2D{6,7}
+	p2 := Point2D{-4,5}
+	if p1.Slope(&p2) != p2.Slope(&p1) {
+		t.Errorf("Slope is not commutative")
+	}
+}
+func TestSlopePoint2D_1(t *testing.T) {
+	p1 := Point2D{5,4}
+	p2 := Point2D{7,6}
+	expected := 1.
+	result := p1.Slope(&p2)
+	diff := math.Abs(expected - result)
+
+	if diff > epsilon {
+		t.Errorf("Slope between %s and %s was %g, not %g", p1.ToString(), p2.ToString(), result, expected)
+	}
+}
+
+func TestSlopePoint2D_2(t *testing.T) {
+	p1 := Point2D{1,1}
+	p2 := Point2D{2,3}
+	expected := 2.
+	result := p1.Slope(&p2)
+	diff := math.Abs(expected - result)
+
+	if diff > epsilon {
+		t.Errorf("Slope between %s and %s was %g, not %g", p1.ToString(), p2.ToString(), result, expected)
+	}
+}
+
+func TestSlopePoint2D_3(t *testing.T) {
+	p1 := Point2D{10,1}
+	p2 := Point2D{32,2}
+	expected := .045454545
+	result := p1.Slope(&p2)
+	diff := math.Abs(expected - result)
+
+	if diff > epsilon {
+		t.Errorf("Slope between %s and %s was %g, not %g", p1.ToString(), p2.ToString(), result, expected)
+	}
+}
+
+func TestSlopePoint2D_4(t *testing.T) {
+	p1 := Point2D{-5,8}
+	p2 := Point2D{7,6}
+	expected := -0.16666666666
+	result := p1.Slope(&p2)
+	diff := math.Abs(expected - result)
+
+	if diff > epsilon {
+		t.Errorf("Slope between %s and %s was %g, not %g", p1.ToString(), p2.ToString(), result, expected)
+	}
+}
+
+func TestSlopePoint2D_5(t *testing.T) {
+	p1 := Point2D{5,4}
+	p2 := Point2D{7,4}
+	expected := 0.
+	result := p1.Slope(&p2)
+	diff := math.Abs(expected - result)
+
+	if diff > epsilon {
+		t.Errorf("Slope between %s and %s was %g, not %g", p1.ToString(), p2.ToString(), result, expected)
+	}
+}
+
+func TestSlopePoint2D_6(t *testing.T) {
+	p1 := Point2D{5,4}
+	p2 := Point2D{5,6}
+	expected := math.Inf(0)
+	result := p1.Slope(&p2)
+	diff := math.Abs(expected - result)
+
+	if diff > epsilon {
+		t.Errorf("Slope between %s and %s was %g, not %g", p1.ToString(), p2.ToString(), result, expected)
+	}
+}
 func TestSetDimensions2D(t *testing.T) {
 	SetDimensions2D(1, 2, 3, 4)
 	if XMin != 1 {
