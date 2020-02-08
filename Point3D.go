@@ -1,7 +1,9 @@
 package point
 
-import "fmt"
-import "math"
+import (
+	"fmt"
+	"math"
+)
 
 //Point3D is used to represent points in 3D space
 type Point3D struct {
