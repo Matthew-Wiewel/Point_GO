@@ -1,10 +1,24 @@
 package point
 
+//import "math"
 import "testing"
 
-func TestToStringPoint3D(t *testing.T) {
+//epsilon definition is found in Point2D_test.go
 
+/*
+NOTE: most unit tests of Point3D are missing from this file at this time.
+I am not sure exactly when I'll get around to adding them.
+*/
+
+func TestToStringPoint3D(t *testing.T) {
+	p := Point3D{Point2D{1,2},3}
+	expected := "(1,2,3)"
+	result := p.ToString()
+	if result != expected {
+		t.Errorf("point with x,y,z = 1,2,3 returned %s, not %s", result, expected)
+	}
 }
+
 func TestSetDimensions3D(t *testing.T) {
     SetDimensions3D(1,2,3,4,5,6)
     if XMin != 1 {
