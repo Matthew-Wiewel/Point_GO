@@ -1,7 +1,9 @@
 package point
 
-//import "math"
-import "testing"
+import(
+	//"math"
+	"testing"
+)
 
 //epsilon definition is found in Point2D_test.go
 
