@@ -1,10 +1,16 @@
 package point
 
+import "fmt"
 import "math"
 
 //Point2D is a structure for 2D points
 type Point2D struct {
 	X, Y int
+}
+
+//ToString shows how a Point2D should be printed
+func (caller *Point2D) ToString() string {
+	return fmt.Sprintf("(%d,%d)", caller.X, caller.Y)
 }
 
 //DistanceFrom is a method to get the absolute distance between two points
@@ -68,6 +74,21 @@ func (caller *Point2D) MidpointValues(other *Point2D) (x, y float64) {
 	return x, y
 }
 
+//Slope returns the slope between two Point2Ds
+func (caller *Point2D) Slope(other *Point2D) float64 {
+	//get the change in x. If it is 0, return infinity
+	deltaX := caller.X - other.X
+	if deltaX == 0 {
+		return math.Inf(deltaX) 
+	}
+
+	//deltaX is non-zero, calculate delta y
+	deltaY := caller.Y - other.Y
+
+	//return the slope
+	return float64(deltaY) / float64(deltaX)
+}
+
 /*the following methods are meant for use with a 2D grid such as a 2D array
 these methods expect (0,0) to be in the top left of the grid with increasing
 x values being to the right, decreasing x values being to the left
@@ -94,44 +115,52 @@ func (caller *Point2D) isValid() bool {
 	return caller.X >= XMin && caller.X <= XMax && caller.Y >= YMin && caller.Y <= YMax
 }
 
-//HasRight returns if there is a Point2D to the right of the caller within bounds
+//HasRight returns if there is a Point2D to the right of the caller within bounds in the x direction
+//right is defined as increasing x values
 func (caller *Point2D) HasRight() bool {
 	return caller.X < XMax
 }
 
-//HasLeft returns if there a Point2D to the left of the caller within bounds
+//HasLeft returns if there a Point2D to the left of the caller within bounds in the x direction
+//left is defined as decreasing x values
 func (caller *Point2D) HasLeft() bool {
 	return caller.X > XMin
 }
 
-//HasUp returns if there is a Point2D above the caller within bounds
+//HasUp returns if there is a Point2D above the caller within bounds in the y direction
+//up is defined as decreasing y values
 func (caller *Point2D) HasUp() bool {
 	return caller.Y > YMin
 }
 
-//HasDown returns if there is a Point2D below the caller within bounds
+//HasDown returns if there is a Point2D below the caller within bounds in the y direction
+//down is defined as increasing y values
 func (caller *Point2D) HasDown() bool {
 	return caller.Y < YMax
 }
 
 //these methods return a Point2D in the corresponding direction
 
-//Right return a Point2D to the right
+//Right return a Point2D to the right in the x direction
+//right is defined as increasing x values
 func (caller *Point2D) Right() Point2D {
 	return Point2D{caller.X + 1, caller.Y}
 }
 
-//Left returns a Point2D to the left
+//Left returns a Point2D to the left in the x direciton
+//left is defined as decreasing x values
 func (caller *Point2D) Left() Point2D {
 	return Point2D{caller.X - 1, caller.Y}
 }
 
-//Up returns a Point2D above
+//Up returns a Point2D above in the y direction
+//up is defined as decreasing y values
 func (caller *Point2D) Up() Point2D {
 	return Point2D{caller.X, caller.Y - 1}
 }
 
-//Down returns a Point2D below
+//Down returns a Point2D below in the y direction
+//down is defined as increasing y values
 func (caller *Point2D) Down() Point2D {
 	return Point2D{caller.X, caller.Y + 1}
 }
