@@ -2,18 +2,6 @@ package point
 
 import "math"
 
-//XMin and the rest of these variables are intended for use when using Point2D to
-//track locations in a 2D-grid. These values are inclusive
-var XMin int //XMin
-//XMax lint-satisfy
-var XMax int
-
-//YMin lint-satisfy
-var YMin int
-
-//YMax lint-satisfy
-var YMax int
-
 //Point2D is a structure for 2D points
 type Point2D struct {
 	X, Y int
@@ -80,17 +68,29 @@ func (caller *Point2D) MidpointValues(other *Point2D) (x, y float64) {
 	return x, y
 }
 
-//SetDimensions2D is a method used to set the minimum and maximum dimesnions along the X/Y plane for Point2D
-func SetDimensions2D(xmin, xmax, ymin, ymax int) {
-	XMin, XMax, YMin, YMax = xmin, xmax, ymin, ymax
-}
-
 /*the following methods are meant for use with a 2D grid such as a 2D array
 these methods expect (0,0) to be in the top left of the grid with increasing
 x values being to the right, decreasing x values being to the left
 increasing y values being down and decreasing y values being up
 XMin, XMax, YMin, and YMax should be set prior to calling these methods
 */
+
+//XMin and the rest of these variables are intended for use when using Point2D to
+//track locations in a 2D-grid. These values are inclusive
+var XMin int //XMin
+//XMax lint-satisfy
+var XMax int
+
+//YMin lint-satisfy
+var YMin int
+
+//YMax lint-satisfy
+var YMax int
+
+//SetDimensions2D is a method used to set the minimum and maximum dimesnions along the X/Y plane for Point2D
+func SetDimensions2D(xmin, xmax, ymin, ymax int) {
+	XMin, XMax, YMin, YMax = xmin, xmax, ymin, ymax
+}
 
 //IsValid returns whether or not the calling Point2D is within the bounds of the grid
 func (caller *Point2D) isValid() bool {
