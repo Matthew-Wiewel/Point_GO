@@ -61,21 +61,47 @@ func TestToStringPoint2D(t *testing.T) {
 	}
 }
 
-func TestDistanceFromPoint2D(t *testing.T) {
-	p1 := Point2D{0,0}
-	p2 := Point2D{3,4}
-	expected1 := 5.
+func TestDistanceFromPoint2D_1(t *testing.T) {
+	p1 := Point2D{1,1}
+	p2 := Point2D{4,5}
+	expected := 5.
 	if p1.DistanceFrom(&p2) != p2.DistanceFrom(&p1) {
 		t.Errorf("DistanceFrom is not commutative")
 	}
-	result1 := p1.DistanceFrom(&p2)
-	difference1 := math.Abs(expected1 - result1)
-	if difference1 > epsilon {
-		t.Errorf("Distance from p1 to p2 is %g, not %g", difference1, expected1)
+	result := p1.DistanceFrom(&p2)
+	difference := math.Abs(expected - result)
+	if difference > epsilon {
+		t.Errorf("Distance from p1 to p2 is %g, not %g", difference, expected)
 	}
-	
 }
 
+func TestDistanceFromPoint2D_2(t *testing.T) {
+	p1 := Point2D{-7,-4}
+	p2 := Point2D{17,7}
+	expected := 26.400758
+	if p1.DistanceFrom(&p2) != p2.DistanceFrom(&p1) {
+		t.Errorf("DistanceFrom is not commutative")
+	}
+	result := p1.DistanceFrom(&p2)
+	difference := math.Abs(expected - result)
+	if difference > epsilon {
+		t.Errorf("Distance from p1 to p2 is %g, not %g", difference, expected)
+	}
+}
+
+func TestDistanceFromPoint2D_3(t *testing.T) {
+	p1 := Point2D{-5,-10}
+	p2 := Point2D{-3,-4}
+	expected := 6.324555
+	if p1.DistanceFrom(&p2) != p2.DistanceFrom(&p1) {
+		t.Errorf("DistanceFrom is not commutative")
+	}
+	result := p1.DistanceFrom(&p2)
+	difference := math.Abs(expected - result)
+	if difference > epsilon {
+		t.Errorf("Distance from p1 to p2 is %g, not %g", difference, expected)
+	}
+}
 func TestSetDimensions2D(t *testing.T) {
 	SetDimensions2D(1, 2, 3, 4)
 	if XMin != 1 {
