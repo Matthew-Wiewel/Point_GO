@@ -54,6 +54,13 @@ func (caller *Point2D) IsOrigin() bool {
 	return caller.X == 0 && caller.Y == 0
 }
 
+//MidpointValues returns the x and y float64 values of the midpoint between two points
+func (caller *Point2D) MidpointValues(other *Point2D) (x, y float64) {
+	x = float64(caller.X+other.X) / 2.
+	y = float64(caller.Y+other.Y) / 2.
+	return x, y
+}
+
 //MidpointApprox returns the approximate midpoint between two Point2D objects
 //it does so by getting the floating point value and then rounding
 func (caller *Point2D) MidpointApprox(other *Point2D) (midpoint Point2D) {
@@ -66,13 +73,6 @@ func (caller *Point2D) MidpointApprox(other *Point2D) (midpoint Point2D) {
 	midpoint.X = int(x)
 	midpoint.Y = int(y)
 	return midpoint
-}
-
-//MidpointValues returns the x and y float64 values of the midpoint between two points
-func (caller *Point2D) MidpointValues(other *Point2D) (x, y float64) {
-	x = float64(caller.X+other.X) / 2.
-	y = float64(caller.Y+other.Y) / 2.
-	return x, y
 }
 
 //Slope returns the slope between two Point2Ds

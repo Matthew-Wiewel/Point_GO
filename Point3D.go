@@ -37,19 +37,19 @@ func (caller *Point3D) IsOrigin() bool {
 	return caller.Point2D.IsOrigin() && caller.Z == 0
 }
 
+//MidpointValues is a method to get the actual midpoint values between two Point3Ds
+func (caller *Point3D) MidpointValues(other *Point3D) (x,y,z float64) {
+	x,y = caller.Point2D.MidpointValues(&other.Point2D)
+	z = (float64)(caller.Z + other.Z) / 2.
+	return x,y,z
+}
+
 //MidpointApprox is a method to get the approximate midpoint between two Point3D point
 func (caller *Point3D) MidpointApprox(other *Point3D) (midpoint Point3D) {
 	x, y, z := caller.MidpointValues(other) //get midpoint values
 	x, y, z = math.Round(x), math.Round(y), math.Round(z) //round prior to casting
 	midpoint.X, midpoint.Y, midpoint.Z = int(x), int(y), int(z) //cast float values to integers and assign to the midpoint
 	return midpoint
-}
-
-//MidpointValues is a method to get the actual midpoint values between two Point3Ds
-func (caller *Point3D) MidpointValues(other *Point3D) (x,y,z float64) {
-	x,y = caller.Point2D.MidpointValues(&other.Point2D)
-	z = (float64)(caller.Z + other.Z) / 2.
-	return x,y,z
 }
 
 /*As in Point2D, the methods below are intended for use incases where Point3D is
