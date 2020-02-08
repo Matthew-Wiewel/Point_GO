@@ -473,6 +473,88 @@ func TestMidpointValuesPoint2D_5(t *testing.T) { //test midpoint values negative
 	}
 }
 
+//the MidpointApprox tests use the same points as their correspoidning MidpointValues test
+
+func TestMidpointApproxPoint2D_1(t *testing.T) {
+	p1 := Point2D{3,4}
+	p2 := Point2D{7,2}
+	expected := Point2D{5,3}
+	result := p1.MidpointApprox(&p2)
+
+	if p1.MidpointApprox(&p2) != p2.MidpointApprox(&p1) {
+		t.Errorf("MidpointApprox not commutative")
+	}
+
+	if result != expected {
+		t.Errorf("Midpoint of %s and %s returned was %s, not %s", 
+		p1.ToString(), p2.ToString(), result.ToString(), expected.ToString())
+	}
+}
+
+func TestMidpointApproxPoint2D_2(t *testing.T) {
+	p1 := Point2D{3,4}
+	p2 := Point2D{3,4}
+	expected := Point2D{3,4}
+	result := p1.MidpointApprox(&p2)
+
+	if p1.MidpointApprox(&p2) != p2.MidpointApprox(&p1) {
+		t.Errorf("MidpointApprox not commutative")
+	}
+
+	if result != expected {
+		t.Errorf("Midpoint of %s and %s returned was %s, not %s", 
+		p1.ToString(), p2.ToString(), result.ToString(), expected.ToString())
+	}
+}
+
+func TestMidpointApproxPoint2D_3(t *testing.T) {
+	p1 := Point2D{-4,4}
+	p2 := Point2D{7,-1}
+	expected := Point2D{2,2}
+	result := p1.MidpointApprox(&p2)
+
+	if p1.MidpointApprox(&p2) != p2.MidpointApprox(&p1) {
+		t.Errorf("MidpointApprox not commutative")
+	}
+
+	if result != expected {
+		t.Errorf("Midpoint of %s and %s returned was %s, not %s", 
+		p1.ToString(), p2.ToString(), result.ToString(), expected.ToString())
+	}
+}
+
+func TestMidpointApproxPoint2D_4(t *testing.T) {
+	p1 := Point2D{-3,-4}
+	p2 := Point2D{-7,-2}
+	expected := Point2D{-5,-3}
+	result := p1.MidpointApprox(&p2)
+
+	if p1.MidpointApprox(&p2) != p2.MidpointApprox(&p1) {
+		t.Errorf("MidpointApprox not commutative")
+	}
+
+	if result != expected {
+		t.Errorf("Midpoint of %s and %s returned was %s, not %s", 
+		p1.ToString(), p2.ToString(), result.ToString(), expected.ToString())
+	}
+}
+
+func TestMidpointApproxPoint2D_5(t *testing.T) {
+	p1 := Point2D{-1,-4}
+	p2 := Point2D{-6,-2}
+	expected := Point2D{-4,-3}
+	result := p1.MidpointApprox(&p2)
+
+	if p1.MidpointApprox(&p2) != p2.MidpointApprox(&p1) {
+		t.Errorf("MidpointApprox not commutative")
+	}
+
+	if result != expected {
+		t.Errorf("Midpoint of %s and %s returned was %s, not %s", 
+		p1.ToString(), p2.ToString(), result.ToString(), expected.ToString())
+	}
+}
+
 func TestMidpointValuesPoint2D_6(t *testing.T) { //test when a midpoint value is 0
 	p1 := Point2D{-3,-4}
 	p2 := Point2D{3,4}
